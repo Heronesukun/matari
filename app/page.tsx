@@ -7,14 +7,14 @@ const active = [
     description: '复杂度 · 线性表 · 栈与队列',
     href: '/docs/cs/data-structure',
     icon: Waypoints,
-    status: '核心前三章建设中',
+    status: '核心前三章已上线',
   },
   {
     title: '计算机组成原理',
     description: '数据表示与运算',
     href: '/docs/cs/computer-organization',
     icon: Cpu,
-    status: '第二章建设中',
+    status: '第二章已上线',
   },
 ];
 
