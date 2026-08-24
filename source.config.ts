@@ -14,6 +14,7 @@ export const docs = defineDocs({
 export default defineConfig({
   mdxOptions: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    // KaTeX must run before Fumadocs' default Shiki syntax highlighter.
+    rehypePlugins: (plugins) => [rehypeKatex, ...plugins],
   },
 });
