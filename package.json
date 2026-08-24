@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "check:content": "node scripts/check-content.mjs",
+    "build": "npm run check:content && next build",
     "start": "next start",
     "postinstall": "fumadocs-mdx"
   },
