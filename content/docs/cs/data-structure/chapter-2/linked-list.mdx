@@ -1,0 +1,160 @@
+---
+title: 链表：用指针连接分散节点
+description: 掌握头结点、前驱定位、插入删除顺序，以及反转、合并和双指针等常见链表模式。
+---
+
+# 链表：用指针连接分散节点
+
+单链表节点通常写成：
+
+```c
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+```
+
+链表不依赖连续空间。每个节点除数据外，还保存后继节点地址。
+
+## 头指针与头结点不要混淆
+
+- **头指针**：指向链表第一个节点的指针变量；
+- **头结点**：人为放在首元素之前的哨兵节点，通常不存有效数据。
+
+带头结点的优势是：在首元素前插入和在中间插入可以使用同一套逻辑，不必频繁单独修改头指针。
+
+本文默认 `head` 指向头结点，首个有效节点为 `head->next`。
+
+## 按位置查找为什么是 `Θ(n)`
+
+链表无法通过下标直接计算地址。要找到第 `i` 个元素，必须从头沿 `next` 逐个走过去。
+
+这也是一个重要边界：**链表插入本身可以是 `Θ(1)`，但如果题目只给位置 `i`，寻找前驱通常先花 `Θ(n)`。**
+
+## 在已知前驱 `p` 后插入
+
+```c
+bool insert_after(Node *p, int x) {
+    if (p == NULL) return false;
+
+    Node *s = malloc(sizeof(Node));
+    if (s == NULL) return false;
+
+    s->data = x;
+    s->next = p->next;
+    p->next = s;
+    return true;
+}
+```
+
+顺序不能交换。必须先让新节点接住原后继，再让 `p` 指向新节点。
+
+```text
+原来：p → q
+第一步：s → q
+第二步：p → s
+结果：p → s → q
+```
+
+## 删除 `p` 的后继节点
+
+```c
+bool erase_after(Node *p, int *removed) {
+    if (p == NULL || p->next == NULL) return false;
+
+    Node *q = p->next;
+    *removed = q->data;
+    p->next = q->next;
+    free(q);
+    return true;
+}
+```
+
+**核心顺序：**先保存待删节点 `q`，再跨过它，最后释放。若先 `free(q)`，就不能再安全访问 `q->next`。
+
+## 标例 1｜原地反转单链表
+
+```c
+Node *reverse(Node *first) {
+    Node *prev = NULL;
+    Node *cur = first;
+
+    while (cur != NULL) {
+        Node *next = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = next;
+    }
+    return prev;
+}
+```
+
+三个指针的含义必须说清楚：
+
+- `prev`：已经反转好的前半段表头；
+- `cur`：当前要处理的节点；
+- `next`：暂存尚未处理的后继，防止改指针后丢失剩余链表。
+
+**识别信号：**原地反转指针结构，通常需要“前、当前、后”三个角色。
+
+## 标例 2｜合并两个递增链表
+
+```c
+Node dummy;
+Node *tail = &dummy;
+dummy.next = NULL;
+
+while (a != NULL && b != NULL) {
+    if (a->data <= b->data) {
+        tail->next = a;
+        a = a->next;
+    } else {
+        tail->next = b;
+        b = b->next;
+    }
+    tail = tail->next;
+}
+tail->next = (a != NULL) ? a : b;
+```
+
+哨兵节点 `dummy` 让第一次接节点和后续接节点完全一致。每个节点只处理一次，时间 `Θ(m+n)`，额外节点空间 `Θ(1)`。
+
+## 标例 3｜倒数第 `k` 个节点
+
+使用快慢指针：
+
+1. `fast` 先走 `k` 步；
+2. `slow` 与 `fast` 再一起走；
+3. 当 `fast` 到达末尾时，`slow` 指向倒数第 `k` 个节点。
+
+这把“两次遍历先求长度”的做法压成一次遍历，时间仍是 `Θ(n)`，但只需一个扫描过程。
+
+## 双链表与循环链表
+
+### 双链表
+
+每个节点同时保存 `prev` 与 `next`。已知节点时可常数时间访问前驱，删除也更对称，但每个节点多一个指针，修改时要维护更多连接。
+
+### 循环链表
+
+尾节点的 `next` 指回头部或首节点。适合循环轮转场景，但遍历终止条件不能再写 `p != NULL`，必须判断是否回到起点。
+
+## 高频易错点
+
+- 把“已知节点插入 `Θ(1)`”误说成“链表任意位置插入都 `Θ(1)`”；
+- 改 `p->next` 前没有保存原后继；
+- 删除后继续访问已释放节点；
+- 无头结点链表没有单独处理首节点；
+- 循环链表仍用 `NULL` 作为结束条件；
+- 反转时忘记暂存 `cur->next`，导致剩余链表丢失。
+
+## 30 秒速查
+
+```text
+按位置访问：Θ(n)
+已知前驱插入/删除：Θ(1)
+插入：新节点先接后继，再让前驱接新节点
+删除：保存待删 → 跨过 → free
+反转：prev / cur / next
+边界简化：优先考虑头结点或哨兵
+```
