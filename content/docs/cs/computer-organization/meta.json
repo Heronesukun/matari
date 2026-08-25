@@ -1,4 +1,4 @@
 {
   "title": "计算机组成原理",
-  "pages": ["index", "chapter-1-overview", "chapter-2", "chapter-3-memory", "chapter-4-instruction", "chapter-5-cpu", "chapter-6-bus", "chapter-7-io"]
+  "pages": ["index", "chapter-0", "chapter-1-overview", "chapter-2", "chapter-3-memory", "chapter-4-instruction", "chapter-5-cpu", "chapter-6-bus", "chapter-7-io"]
 }

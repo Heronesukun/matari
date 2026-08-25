@@ -1,0 +1,157 @@
+---
+title: 导入自测：现在可以进入数据结构正文吗
+description: 用十个低门槛问题检查函数、循环、数组、指针、内存、递归、取模和状态跟踪是否达到阅读正文的最低要求。
+---
+
+# 导入自测：现在可以进入数据结构正文吗
+
+先独立回答，再展开详解。这里不是考试，目的只是找到需要回看的前置内容。
+
+## 1. 函数声明
+
+```c
+bool remove_at(SqList *L, int pos)
+```
+
+这个函数接收什么，返回什么？
+
+<details>
+<summary>查看详解</summary>
+
+它接收一个顺序表地址和一个位置。返回真假，通常表示删除是否成功。通过 `L` 可以修改原顺序表。
+
+</details>
+
+## 2. 循环次数
+
+```c
+for (int i = 0; i < 3; i++) visit(i);
+```
+
+`visit` 的参数依次是什么？
+
+<details>
+<summary>查看详解</summary>
+
+依次为 `0, 1, 2`，共执行 3 次。`i = 3` 时条件 `i < 3` 不成立。
+
+</details>
+
+## 3. 倍增变量
+
+```c
+for (int i = 1; i <= 8; i *= 2) visit(i);
+```
+
+参数序列是什么？
+
+<details>
+<summary>查看详解</summary>
+
+`1, 2, 4, 8`。下一次变为 16，超过边界后停止。
+
+</details>
+
+## 4. 数组下标
+
+长度为 5 的数组，合法下标范围是什么？
+
+<details>
+<summary>查看详解</summary>
+
+从 0 到 4。长度表示元素个数，不是最后一个下标。
+
+</details>
+
+## 5. `.` 与 `->`
+
+`SqList L` 与 `SqList *p` 分别怎样访问 `length`？
+
+<details>
+<summary>查看详解</summary>
+
+对象使用 `L.length`，对象地址使用 `p->length`。
+
+</details>
+
+## 6. 链表插入顺序
+
+```c
+node->next = p->next;
+p->next = node;
+```
+
+第一行为什么必须先执行？
+
+<details>
+<summary>查看详解</summary>
+
+先保存原后继地址。若先让 `p->next = node`，原后继可能失去引用，后半段链表就无法继续连接。
+
+</details>
+
+## 7. 动态内存
+
+`malloc` 与 `free` 分别解决什么问题？
+
+<details>
+<summary>查看详解</summary>
+
+`malloc` 在运行时申请内存并返回地址，`free` 释放不再使用的动态内存。申请结果需要检查是否为 `NULL`。
+
+</details>
+
+## 8. 递归终止
+
+下面函数的终止条件是什么？
+
+```c
+int f(int n) {
+    if (n <= 1) return 1;
+    return f(n - 1) + 1;
+}
+```
+
+<details>
+<summary>查看详解</summary>
+
+当 `n <= 1` 时直接返回，不再递归。每次调用把规模减 1，最终会到达终止条件。
+
+</details>
+
+## 9. 循环下标
+
+容量 `M = 8`，若 `rear = 7`，执行 `(rear + 1) % M` 后是多少？
+
+<details>
+<summary>查看详解</summary>
+
+结果为 0，因为 `8 % 8 = 0`。这就是循环队列从数组末尾回到开头的方式。
+
+</details>
+
+## 10. 栈状态
+
+空栈执行：
+
+```text
+push(4), push(7), pop()
+```
+
+`pop` 返回什么，最终栈中还剩什么？
+
+<details>
+<summary>查看详解</summary>
+
+`pop` 返回最近压入的 7，最终栈中剩下 4。这体现后进先出。
+
+</details>
+
+## 怎样判断是否可以继续
+
+- 8 题以上能独立说明理由：可以进入 [复杂度](/docs/cs/data-structure/chapter-1)。
+- 主要错在函数和循环：回看 [函数与控制流程](/docs/cs/data-structure/chapter-0/functions-and-control)。
+- 主要错在数组、指针和内存：回看 [数组、结构体、指针与内存](/docs/cs/data-structure/chapter-0/arrays-pointers-memory)。
+- 主要错在递归、取模和操作序列：回看 [状态跟踪、递归与取模](/docs/cs/data-structure/chapter-0/trace-recursion-modulo)。
+
+不需要等到能够默写代码再进入正文。能够准确手动执行，已经足够开始学习。

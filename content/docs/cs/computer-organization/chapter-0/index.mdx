@@ -1,0 +1,62 @@
+---
+title: 导入：第一次怎样阅读位模式
+description: 用位、字节、位权、固定宽度、逻辑运算和移位，为数据表示与运算建立最低限度的前置基础。
+---
+
+# 导入：第一次怎样阅读位模式
+
+计算机组成原理的困难常常不是计算，而是同一页同时出现了二进制、位宽、编码、逻辑运算和硬件名词。这个导入章节先把阅读工具补齐，正文再讨论补码、浮点数和 ALU。
+
+这一章不是数字电路完整课程，也不会提前讲完数据表示。它只要求你能：
+
+```text
+看清一共有多少位
+分清最高位与最低位
+按位权读取一个无符号模式
+执行简单的 AND / OR / XOR / NOT
+理解左移、右移和固定位宽截断
+```
+
+## 先选一条路线
+
+### 第一次接触二进制
+
+按顺序学习：
+
+1. [位、字节与书写约定](/docs/cs/computer-organization/chapter-0/bits-and-notation)
+2. [2 的幂、位权与固定宽度](/docs/cs/computer-organization/chapter-0/powers-and-fixed-width)
+3. [逻辑运算与移位](/docs/cs/computer-organization/chapter-0/logic-and-shifts)
+4. [导入自测](/docs/cs/computer-organization/chapter-0/readiness-check)
+
+### 已经熟悉二进制
+
+先做 [导入自测](/docs/cs/computer-organization/chapter-0/readiness-check)。能够解释答案，而不只是算出答案，就可以直接进入 [数据表示与运算](/docs/cs/computer-organization/chapter-2)。
+
+## 一个贯穿后续章节的习惯
+
+任何二进制结论前，先写两项：
+
+```text
+位宽：8 位 / 16 位 / 32 位 ...
+解释规则：无符号 / 补码 / 浮点字段 / 字符编码 ...
+```
+
+例如 `11111111`：
+
+- 作为 8 位无符号数是 255；
+- 作为 8 位补码整数是 -1；
+- 作为某条指令中的字段，可能根本不是一个完整数值。
+
+位模式没有自行携带类型。类型来自使用它的指令和上下文。
+
+## 后续内容与本章前置的关系
+
+| 后续内容 | 本章提供的工具 |
+|---|---|
+| 进位制 | 位权、二进制书写、4 位分组 |
+| 整数表示 | 固定位宽、最高位、表示范围 |
+| 整数运算 | 按位操作、移位、截断和回绕 |
+| 浮点数 | 2 的幂、二进制小数、科学记数形式 |
+| ALU | AND / OR / XOR、加法输入输出、状态位的阅读基础 |
+
+从 [位、字节与书写约定](/docs/cs/computer-organization/chapter-0/bits-and-notation) 开始。
