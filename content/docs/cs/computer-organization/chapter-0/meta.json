@@ -1,0 +1,4 @@
+{
+  "title": "导入 · 位与运算的最小基础",
+  "pages": ["index", "bits-and-notation", "powers-and-fixed-width", "logic-and-shifts", "readiness-check"]
+}
