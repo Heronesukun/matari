@@ -1,28 +1,161 @@
+<div align="center">
+
 # MATARI
 
-MATARI is a fast-reference and self-study knowledge base for Mathematics II and core computer-science subjects.
+### 先会用，再看深。
 
-Current milestone:
+面向 **数学二、数据结构、计算机组成原理、计算机网络与操作系统** 的自学型学习网站。
 
-- Mathematics II: Calculus Chapters 1–3
-- Data Structures: Complexity, Linear Lists, Stacks and Queues
-- Computer Organization: Data Representation and Arithmetic
+MATARI 不追求把所有知识塞进一个资料库，而是用更短、更清晰的学习路径，帮助学习者完成：
 
-The content focuses on concepts, recognition signals, executable methods, canonical examples, common question types, pitfalls, and guided practice solutions.
+**理解问题 → 识别方法 → 独立执行 → 练习迁移**
 
-- Framework: Next.js + Fumadocs + MDX
-- Math rendering: KaTeX
-- Hosting: Vercel
+[开始学习](https://mtr.heronesukun.top) · [课程入口](https://mtr.heronesukun.top/docs) · [问题反馈](https://github.com/Heronesukun/matari/issues)
 
-## Local development
+[![CI](https://github.com/Heronesukun/matari/actions/workflows/ci.yml/badge.svg)](https://github.com/Heronesukun/matari/actions/workflows/ci.yml)
+[![Website](https://img.shields.io/badge/website-online-2563eb)](https://mtr.heronesukun.top)
+
+</div>
+
+## MATARI 想解决什么
+
+学习一门课程时，真正困难的往往不是“没有见过定义”，而是：
+
+- 不知道当前知识解决什么问题；
+- 看见题目或场景时，想不到应该使用什么方法；
+- 看懂了例题，却无法独立完成相似问题；
+- 内容太浅时只会背结论，内容太密时又很难开始。
+
+MATARI 希望把第一次接触一门课程所需的路径压缩到足够清晰，同时保留正确应用不可缺少的条件、推理和练习。目标不是让学习者“读过”，而是让学习者关闭解答后，仍然能够说明为什么从这一步开始，并独立解决代表性问题。
+
+## 它不是一座只负责收录的图书馆
+
+| 常见资料形态 | MATARI 的做法 |
+| --- | --- |
+| 按知识点尽可能完整地收录 | 按学习者真正需要做出的判断组织内容 |
+| 给出定义、公式与结论 | 说明它解决什么问题、何时使用、怎样执行 |
+| 例题重点展示计算结果 | 展示识别、策略、推导、结论与复盘 |
+| 练习只附最终答案 | 提供逐题详解，并指出边界与可迁移模式 |
+| 第一次就呈现全部细节 | 先建立必会主干，再补高频应用与扩展 |
+
+MATARI 不追求用最少的字写完一个知识点，也不追求把教材完整搬到网页中。它追求的是：**用最少但足够的内容，建立一条真正可以自学的路径。**
+
+## 一页内容应该形成怎样的学习闭环
+
+```text
+导入与前置自测
+        ↓
+问题入口 → 识别信号 → 最小理论 → 操作流程
+        ↓
+标例推导 → 方法比较 → 易错边界
+        ↓
+A 必会主干 → B 高频应用 → C 补充辨识
+        ↓
+逐题详解 → 复盘 → 迁移
+```
+
+每个核心方法都应回答六个问题：
+
+1. 它解决什么问题？
+2. 看到什么信号时应该想到它？
+3. 使用前必须检查哪些条件？
+4. 实际操作步骤是什么？
+5. 另一个看似可行的方法为什么更差或不能使用？
+6. 同一个思路还能迁移到什么相邻问题？
+
+这也是 MATARI 判断一页内容是否完成的标准：学习者不仅能复述概念，还能识别、选择、执行并迁移。
+
+## 当前课程
+
+> MATARI 仍处于持续建设阶段。已经上线的完整章节可以按学习路径使用；尚未完成的部分会继续按同一内容标准扩展。
+
+| 学习方向 | 当前已上线 | 后续建设 |
+| --- | --- | --- |
+| [数学二](https://mtr.heronesukun.top/docs/math2) | 函数、极限与连续；一元函数微分学；一元函数积分学 | 高等数学后续章节与线性代数 |
+| [数据结构](https://mtr.heronesukun.top/docs/cs/data-structure) | 代码阅读导入；复杂度；线性表；栈与队列 | 串与数组、树、图、查找、排序 |
+| [计算机组成原理](https://mtr.heronesukun.top/docs/cs/computer-organization) | 位模式导入；数据表示与运算 | 存储系统、指令系统、CPU、总线等 |
+| 操作系统 | 尚未上线 | 按相同的自学标准建设 |
+| 计算机网络 | 尚未上线 | 按相同的自学标准建设 |
+
+长期目标不是让每门课只拥有一份章节目录，而是让它们都具备前置导入、可用主干、方法选择、代表性标例、分层练习和逐题详解。
+
+## 推荐的学习方式
+
+1. **先完成导入或前置自测。** 已经掌握前置知识时可以直接通过自测，不必重复阅读。
+2. **第一轮只建立可用主干。** 阅读核心内容与标例，并完成 A 组“必会主干”练习。
+3. **第二轮再补完整性和迁移。** 学习扩展、方法比较与易错边界，再完成 B 组“高频应用”和 C 组“补充辨识”。
+4. **遮住解答重新做一次。** 能够说出“为什么第一步这样做”，比记住最终答案更重要。
+
+## 内容标准
+
+MATARI 的内容建设遵循这些原则：
+
+- **正确优先。** 不为了简短而删除定义域、参数范围、边界条件或定理前提。
+- **只保留支撑应用所需的理论。** 证明只有在解释条件、提供通用思路或连接重要方法时才进入主线。
+- **先教识别和选择，再教计算。** 方法不是越高级越好，能够直接解决问题的路径通常更值得优先掌握。
+- **例题必须承担迁移任务。** 一个标例应建立流程、暴露误区、连接知识点或展示边界，而不是只更换数字。
+- **练习必须有可学习的详解。** 重要题目需要给出结论、识别、过程与复盘，而不是只有答案。
+- **内容必须适合独立学习。** 不把新的关键步骤藏在“显然”“易得”或“简单计算”之后。
+
+## 技术栈
+
+- [Next.js](https://nextjs.org/) + [React](https://react.dev/)
+- [Fumadocs](https://fumadocs.dev/) + MDX
+- KaTeX 数学公式渲染
+- Tailwind CSS
+- Vercel 部署
+
+## 本地开发
 
 ```bash
+git clone https://github.com/Heronesukun/matari.git
+cd matari
 npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+打开 `http://localhost:3000`。
 
-## Content structure
+提交前建议运行：
 
-Content lives in `content/docs/`. Add or edit `.mdx` files to grow the knowledge base.
+```bash
+npm run check:content
+npm run build
+```
+
+`check:content` 会检查课程内容中的异常控制字符、损坏字符和未配对的展示公式分隔符；`build` 会同时执行内容检查和 Next.js 构建。
+
+## 项目结构
+
+```text
+matari/
+├── app/                    # Next.js 页面、布局与搜索接口
+├── content/docs/           # 所有课程内容
+│   ├── math2/              # 数学二
+│   └── cs/
+│       ├── data-structure/
+│       └── computer-organization/
+├── scripts/                # 内容质量检查脚本
+├── source.config.ts        # Fumadocs 内容配置
+└── package.json
+```
+
+课程正文使用 `.mdx` 编写，目录中的 `meta.json` 负责章节顺序与导航。
+
+## 参与建设
+
+欢迎提交内容纠错、代码修复、表达改进、练习设计和新章节建设。
+
+对于新增课程或较大的章节改动，建议先通过 [Issue](https://github.com/Heronesukun/matari/issues) 说明目标学习者、前置要求、学习目标和计划覆盖的范围。内容贡献不应只增加定义或目录，而应尽量补齐“识别—选择—执行—练习—复盘”的完整链路。
+
+提交 Pull Request 前，请确认：
+
+- 示例、练习与代码已经独立验证；
+- 关键条件和边界没有被省略；
+- 练习不是只有答案；
+- `npm run check:content` 与 `npm run build` 均可通过；
+- 一次提交只完成一个清晰、连贯的改进目标。
+
+---
+
+> MATARI 不以“写了多少内容”为完成标准，而以“学习者能否独立解决代表性问题”为完成标准。
