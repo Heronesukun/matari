@@ -1,4 +1,4 @@
 {
   "title": "计算机基础",
-  "pages": ["index", "data-structure", "computer-organization"]
+  "pages": ["index", "data-structure", "computer-organization", "operating-system"]
 }
